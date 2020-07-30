@@ -9,13 +9,13 @@ on:
     branches:
       - master
   schedule:
-    - cron: "0 * * * *"
+    - cron: "*/30 * * * *"
 
 
 jobs:
 
   build:
-    name: Upddate-gist
+    name: Upddate-gist-and-markdown
     runs-on: ubuntu-latest
     env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
@@ -23,7 +23,7 @@ jobs:
           STEAM_API_KEY: ${{ secrets.STEAM_API_KEY }}
           STEAM_ID: ${{ secrets.STEAM_ID }}
           UPDATE_OPTION: GIST_AND_MARKDOWN
-          MARKDOWN_FILE: https://github.com/AngleOldPig/AngleOldPig/blob/master/README.md
+          MARKDOWN_FILE: ./README.md
     steps:
 
     - name: Set up Go 1.x
@@ -35,6 +35,6 @@ jobs:
     - name: Check out code into the Go module directory
       uses: actions/checkout@v2
       
-    - name: Update-gist
+    - name: Update-gist-and-markdown
       run:  go run ./cmd/box/main.go
 
