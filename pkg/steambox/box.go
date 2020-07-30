@@ -33,7 +33,6 @@ func NewBox(apikey string, ghUsername, ghToken string) *Box {
 	box.github = github.NewClient(tp.Client())
 
 	return box
-
 }
 
 // GetGist gets the gist from github.com.
@@ -107,7 +106,7 @@ func (b *Box) UpdateMarkdown(ctx context.Context, title, filename string, conten
 	newMd.Write(content)
 	newMd.WriteString("\n")
 	newMd.WriteString("```\n")
-	newMd.WriteString("<!-- Powered by https://github.com/YouEclipse/steam-box . -->\n")
+	// newMd.WriteString("<!-- Powered by https://github.com/YouEclipse/steam-box . -->\n")
 	newMd.Write(after)
 
 	err = ioutil.WriteFile(filename, newMd.Bytes(), os.ModeAppend)
